@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # comprobar si el archivo existe
-if [! -f "$1" ]; then
+if [ ! -f "$1" ]; then
     echo "Error: file don't exist."
     exit 1
 fi
@@ -20,7 +20,7 @@ byte_order=$(readelf -h "$1" | grep "Data" | awk '{print $2}')
 entry_point_address=$(readelf -h "$1" | grep "Entry point address" | awk '{print $4}')
 
 function display_elf_header_info() {
-    echo "ELF Header Information for '$file_name':"
+    echo "ELF Header Information for '$1':"
     echo "----------------------------------------"
     echo "Magic Number: $magic_number"
     echo "Class: $class"
