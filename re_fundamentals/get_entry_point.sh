@@ -14,9 +14,9 @@ if [ "$file_type" != "ELF" ]; then
 fi
 
 # Extraer la información del encabezado ELF usando readelf
-magic_number=$(xxd -l 4 -p "$1")
+magic_number=$(xxd -l 16 -p "$1")
 class=$(readelf -h "$1" | grep "Class" | awk '{print $2}')
-byte_order=$(readelf -h "$1" | grep "Data" | awk '{print $2}')
+byte_order=$(readelf -h "$1" | grep "Data" | awk '{print $4, $5}')
 entry_point_address=$(readelf -h "$1" | grep "Entry point address" | awk '{print $4}')
 
 function display_elf_header_info() {
