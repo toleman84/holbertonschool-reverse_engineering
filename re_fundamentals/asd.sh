@@ -11,7 +11,7 @@ echo "$command_used" > command.txt
 unusual_section=$(readelf -S "$1" | grep -E "\.upx|\.debug|\.note")
 
 # Obtain the Size of the Unusual Section.
-section_size=$(readelf -S task1 | grep -E '\.upx|\.debug|\.note' | awk '{print $2}' | head -n 1 | tr -d ']')
+section_size=$(readelf -S task1 | grep -E '\.upx|\.debug|\.note' | awk '{print $2}' | tail -n 1 | tr -d ']')
 
 # Once the unusual section is identified, obtain its size from the output of the readelf command.
 echo "$section_size" > size.txt
