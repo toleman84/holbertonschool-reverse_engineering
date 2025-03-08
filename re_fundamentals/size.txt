@@ -1,0 +1,6 @@
+.note.gnu.pr[...]
+.note.gnu.bu[...]
+.note.ABI-tag
+00000338
+00000358
+0000037c
