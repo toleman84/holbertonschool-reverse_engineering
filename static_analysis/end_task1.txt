@@ -1,0 +1,117 @@
+[0x00001140]> pdf @ main
+            ; ICOD XREF from entry0 @ 0x1161(r)                                                                                                                                                                                              
+┌ 236: int main (int argc, char **argv, char **envp);                                                                                                                                                                                        
+│ afv: vars(4:sp[0x10..0x418])                                                                                                                                                                                                               
+│           0x00001372      f30f1efa       endbr64                                                                                                                                                                                           
+│           0x00001376      55             push rbp                                                                                                                                                                                          
+│           0x00001377      4889e5         mov rbp, rsp                                                                                                                                                                                      
+│           0x0000137a      4881ec1004..   sub rsp, 0x410                                                                                                                                                                                    
+│           0x00001381      64488b0425..   mov rax, qword fs:[0x28]                                                                                                                                                                          
+│           0x0000138a      488945f8       mov qword [canary], rax                                                                                                                                                                           
+│           0x0000138e      31c0           xor eax, eax                                                                                                                                                                                      
+│           0x00001390      488d3df10c..   lea rdi, str.Enter_the_string_to_check: ; 0x2088 ; "Enter the string to check: " ; const char *format                                                                                             
+│           0x00001397      b800000000     mov eax, 0                                                                                                                                                                                        
+│           0x0000139c      e84ffdffff     call sym.imp.printf         ; int printf(const char *format)                                                                                                                                      
+│           0x000013a1      488b15b82c..   mov rdx, qword [obj.stdin]  ; obj.stdin__GLIBC_2.2.5                                                                                                                                              
+│                                                                      ; [0x4060:8]=0 ; FILE *stream                                                                                                                                         
+│           0x000013a8      488d85f0fb..   lea rax, [s1]                                                                                                                                                                                     
+│           0x000013af      be00010000     mov esi, 0x100              ; int size                                                                                                                                                            
+│           0x000013b4      4889c7         mov rdi, rax                ; char *s                                                                                                                                                             
+│           0x000013b7      e854fdffff     call sym.imp.fgets          ; char *fgets(char *s, int size, FILE *stream)
+│           0x000013bc      488d85f0fb..   lea rax, [s1]
+│           0x000013c3      488d35da0c..   lea rsi, [0x000020a4]       ; "\n" ; const char *s2
+│           0x000013ca      4889c7         mov rdi, rax                ; const char *s1
+│           0x000013cd      e82efdffff     call sym.imp.strcspn        ; size_t strcspn(const char *s1, const char *s2)
+│           0x000013d2      c68405f0fb..   mov byte [rbp + rax - 0x410], 0
+│           0x000013da      488d95f0fc..   lea rdx, [var_310h]
+│           0x000013e1      488d85f0fb..   lea rax, [s1]
+│           0x000013e8      4889d6         mov rsi, rdx                ; int64_t arg2
+│           0x000013eb      4889c7         mov rdi, rax                ; int64_t arg1
+│           0x000013ee      e836feffff     call sym.encrypt
+│           0x000013f3      488d95f0fd..   lea rdx, [var_210h]
+│           0x000013fa      488d85f0fc..   lea rax, [var_310h]
+│           0x00001401      4889d6         mov rsi, rdx                ; int64_t arg2
+│           0x00001404      4889c7         mov rdi, rax                ; int64_t arg1
+│           0x00001407      e8defeffff     call sym.string_to_hex
+│           0x0000140c      488b153d2c..   mov rdx, qword [obj.encrypted_flag] ; [0x4050:8]=0x2008 str.9E89846A786585866A977D797C8463807C7F6B67848BAB907B698370896B997C797C8D6C6F7E81AE866AB36D7B7F669D7E6A7F96678F9382898263B474
+│           0x00001413      488d85f0fd..   lea rax, [var_210h]
+│           0x0000141a      4889d6         mov rsi, rdx                ; const char *s2
+│           0x0000141d      4889c7         mov rdi, rax                ; const char *s1
+│           0x00001420      e8fbfcffff     call sym.imp.strcmp         ; int strcmp(const char *s1, const char *s2)
+│           0x00001425      85c0           test eax, eax
+│       ┌─< 0x00001427      750e           jne 0x1437
+│       │   0x00001429      488d3d780c..   lea rdi, str.Success__The_input_matches_the_flag. ; 0x20a8 ; "Success! The input matches the flag." ; const char *s
+│       │   0x00001430      e88bfcffff     call sym.imp.puts           ; int puts(const char *s)
+│      ┌──< 0x00001435      eb0c           jmp 0x1443
+│      ││   ; CODE XREF from main @ 0x1427(x)
+│      │└─> 0x00001437      488d3d920c..   lea rdi, str.Failure__The_input_does_not_match_the_flag. ; 0x20d0 ; "Failure! The input does not match the flag." ; const char *s
+│      │    0x0000143e      e87dfcffff     call sym.imp.puts           ; int puts(const char *s)
+│      │    ; CODE XREF from main @ 0x1435(x)
+│      └──> 0x00001443      b800000000     mov eax, 0
+│           0x00001448      488b4df8       mov rcx, qword [canary]
+│           0x0000144c      6448330c25..   xor rcx, qword fs:[0x28]
+│       ┌─< 0x00001455      7405           je 0x145c
+│       │   0x00001457      e884fcffff     call sym.imp.__stack_chk_fail ; void __stack_chk_fail(void)
+│       │   ; CODE XREF from main @ 0x1455(x)
+│       └─> 0x0000145c      c9             leave
+└           0x0000145d      c3             ret
+[0x00001140]> pdf @ encrypt
+ERROR: Invalid tmpseek address 'encrypt'
+ERROR: Invalid command 'pdf @ encrypt' (0x70)
+[0x00001140]> pdf @ sym.encrypt
+            ; CALL XREF from main @ 0x13ee(x)
+┌ 193: sym.encrypt (char *arg1, int64_t arg2);
+│ `- args(rdi, rsi) vars(5:sp[0x10..0x38])
+│           0x00001229      f30f1efa       endbr64
+│           0x0000122d      55             push rbp
+│           0x0000122e      4889e5         mov rbp, rsp
+│           0x00001231      4883ec30       sub rsp, 0x30
+│           0x00001235      48897dd8       mov qword [s], rdi          ; arg1
+│           0x00001239      488975d0       mov qword [var_30h], rsi    ; arg2
+│           0x0000123d      488b45d8       mov rax, qword [s]
+│           0x00001241      4889c7         mov rdi, rax                ; const char *s
+│           0x00001244      e887feffff     call sym.imp.strlen         ; size_t strlen(const char *s)
+│           0x00001249      488945f0       mov qword [var_10h], rax
+│           0x0000124d      48c745f80b..   mov qword [var_8h], 0xb
+│           0x00001255      48c745e800..   mov qword [var_18h], 0
+│       ┌─< 0x0000125d      eb70           jmp 0x12cf
+│       │   ; CODE XREF from sym.encrypt @ 0x12d7(x)
+│      ┌──> 0x0000125f      488b55d8       mov rdx, qword [s]
+│      ╎│   0x00001263      488b45e8       mov rax, qword [var_18h]
+│      ╎│   0x00001267      4801d0         add rax, rdx
+│      ╎│   0x0000126a      0fb608         movzx ecx, byte [rax]
+│      ╎│   0x0000126d      488b45e8       mov rax, qword [var_18h]
+│      ╎│   0x00001271      ba00000000     mov edx, 0
+│      ╎│   0x00001276      48f775f8       div qword [var_8h]
+│      ╎│   0x0000127a      4889d0         mov rax, rdx
+│      ╎│   0x0000127d      488d148500..   lea rdx, [rax*4]
+│      ╎│   0x00001285      488d05942d..   lea rax, obj.key            ; 0x4020 ; U"mysecretkey"
+│      ╎│   0x0000128c      8b0402         mov eax, dword [rdx + rax]
+│      ╎│   0x0000128f      31c8           xor eax, ecx
+│      ╎│   0x00001291      89c1           mov ecx, eax
+│      ╎│   0x00001293      488b45e8       mov rax, qword [var_18h]
+│      ╎│   0x00001297      4883c001       add rax, 1
+│      ╎│   0x0000129b      ba00000000     mov edx, 0
+│      ╎│   0x000012a0      48f775f8       div qword [var_8h]
+│      ╎│   0x000012a4      4889d0         mov rax, rdx
+│      ╎│   0x000012a7      488d148500..   lea rdx, [rax*4]
+│      ╎│   0x000012af      488d056a2d..   lea rax, obj.key            ; 0x4020 ; U"mysecretkey"
+│      ╎│   0x000012b6      8b0402         mov eax, dword [rdx + rax]
+│      ╎│   0x000012b9      01c1           add ecx, eax
+│      ╎│   0x000012bb      488b55d0       mov rdx, qword [var_30h]
+│      ╎│   0x000012bf      488b45e8       mov rax, qword [var_18h]
+│      ╎│   0x000012c3      4801d0         add rax, rdx
+│      ╎│   0x000012c6      89ca           mov edx, ecx
+│      ╎│   0x000012c8      8810           mov byte [rax], dl
+│      ╎│   0x000012ca      488345e801     add qword [var_18h], 1
+│      ╎│   ; CODE XREF from sym.encrypt @ 0x125d(x)
+│      ╎└─> 0x000012cf      488b45e8       mov rax, qword [var_18h]
+│      ╎    0x000012d3      483b45f0       cmp rax, qword [var_10h]
+│      └──< 0x000012d7      7286           jb 0x125f
+│           0x000012d9      488b55d0       mov rdx, qword [var_30h]
+│           0x000012dd      488b45f0       mov rax, qword [var_10h]
+│           0x000012e1      4801d0         add rax, rdx
+│           0x000012e4      c60000         mov byte [rax], 0
+│           0x000012e7      90             nop
+│           0x000012e8      c9             leave
+└           0x000012e9      c3             ret
