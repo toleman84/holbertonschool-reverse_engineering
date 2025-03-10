@@ -1,0 +1,236 @@
+
+undefined8 main(void)
+
+{
+  int iVar1;
+  size_t sVar2;
+  long in_FS_OFFSET;
+  undefined8 uStack_80;
+  char local_78 [104];
+  long local_10;
+  
+  local_10 = *(long *)(in_FS_OFFSET + 0x28);
+  uStack_80 = 0x1014d5;
+  printf("Enter the flag: ");
+  uStack_80 = 0x1014ed;
+  fgets(local_78,100,stdin);
+  uStack_80 = 0x1014f9;
+  sVar2 = strlen(local_78);
+  if (local_78[sVar2 - 1] == '\n') {
+    uStack_80 = 0x101512;
+    sVar2 = strlen(local_78);
+    local_78[sVar2 - 1] = '\0';
+  }
+  uStack_80 = 0x101527;
+  iVar1 = check_flag(local_78);
+  if (iVar1 == 0) {
+    uStack_80 = 0x101545;
+    puts("Incorrect flag!");
+  }
+  else {
+    uStack_80 = 0x101537;
+    puts("Correct flag!");
+  }
+  if (local_10 != *(long *)(in_FS_OFFSET + 0x28)) {
+                    /* WARNING: Subroutine does not return */
+    uStack_80 = 0x10155e;
+    __stack_chk_fail();
+  }
+  return 0;
+}
+
+
+undefined8 check_flag(long flag)
+
+{
+  undefined8 uVar1;
+  int iVar2;
+  uint uVar3;
+  long in_FS_OFFSET;
+  uint local_110;
+  uint local_108 [62];
+  long local_10;
+  
+  local_10 = *(long *)(in_FS_OFFSET + 0x28);
+  local_108[0] = 0x80;
+  local_108[1] = 0xe4;
+  local_108[2] = 8;
+  local_108[3] = 0x18;
+  local_108[4] = 0x4a;
+  local_108[5] = 0x58;
+  local_108[6] = 0xb8;
+  local_108[7] = 0xe4;
+  local_108[8] = 0xac;
+  local_108[9] = 0x34;
+  local_108[10] = 0x58;
+  local_108[0xb] = 0xe4;
+  local_108[0xc] = 0x7e;
+  local_108[0xd] = 0xbc;
+  local_108[0xe] = 0x9e;
+  local_108[0xf] = 0x8c;
+  local_108[0x10] = 0x7e;
+  local_108[0x11] = 0xd0;
+  local_108[0x12] = 0xc0;
+  local_108[0x13] = 0x7c;
+  local_108[0x14] = 0xac;
+  local_108[0x15] = 0xf4;
+  local_108[0x16] = 0x7e;
+  local_108[0x17] = 0x28;
+  local_108[0x18] = 0x9e;
+  local_108[0x19] = 4;
+  local_108[0x1a] = 0x7e;
+  local_108[0x1b] = 0xbc;
+  local_108[0x1c] = 0x9e;
+  local_108[0x1d] = 0x8c;
+  local_108[0x1e] = 0x7e;
+  local_108[0x1f] = 0x5c;
+  local_108[0x20] = 0x14;
+  local_108[0x21] = 0x4c;
+  local_108[0x22] = 0x7e;
+  local_108[0x23] = 0x5c;
+  local_108[0x24] = 0x7e;
+  local_108[0x25] = 0x6c;
+  local_108[0x26] = 2;
+  local_108[0x27] = 0x14;
+  local_108[0x28] = 0xb8;
+  local_108[0x29] = 0x4c;
+  local_108[0x2a] = 0x14;
+  local_108[0x2b] = 0xa4;
+  local_108[0x2c] = 0x9e;
+  local_108[0x2d] = 8;
+  local_108[0x2e] = 0x7e;
+  local_108[0x2f] = 0xe4;
+  local_108[0x30] = 0xf4;
+  local_108[0x31] = 8;
+  local_108[0x32] = 0x6a;
+  local_108[0x33] = 0x14;
+  local_108[0x34] = 0xa6;
+  local_108[0x35] = 0x5c;
+  local_108[0x36] = 0xb8;
+  local_108[0x37] = 0x7c;
+  local_108[0x38] = 0x9e;
+  local_108[0x39] = 0x28;
+  local_108[0x3a] = 0x3e;
+  local_108[0x3b] = 0xac;
+  local_110 = 0;
+  do {
+    if (0x3b < (int)local_110) {
+      uVar1 = 1;
+LAB_00101493:
+      if (local_10 != *(long *)(in_FS_OFFSET + 0x28)) {
+                    /* WARNING: Subroutine does not return */
+        __stack_chk_fail();
+      }
+      return uVar1;
+    }
+    if ((local_110 & 1) == 0) {
+      iVar2 = -0x2e;
+    }
+    else {
+      iVar2 = 0x13c;
+    }
+    if ((local_110 & 1) == 0) {
+      uVar3 = 0xfffffe90;
+    }
+    else {
+      uVar3 = 0x9e0;
+    }
+    if (((*(char *)(flag + (int)local_110) * iVar2 ^ uVar3) & 0xff) != local_108[(int)local_110]) {
+      uVar1 = 0;
+      goto LAB_00101493;
+    }
+    local_110 = local_110 + 1;
+  } while( true );
+}
+
+                             **************************************************************
+                             *                          FUNCTION                          *
+                             **************************************************************
+                             undefined __stdcall check_flag(undefined8 flag)
+             undefined         <UNASSIGNED>   <RETURN>
+             undefined8        RDI:8          flag
+             undefined8        Stack[-0x10]:8 local_10                                XREF[2]:     001011e8(W), 
+                                                                                                   00101493(R)  
+             undefined4        Stack[-0x1c]:4 local_1c                                XREF[1]:     001013eb(W)  
+             undefined4        Stack[-0x20]:4 local_20                                XREF[1]:     001013e4(W)  
+             undefined4        Stack[-0x24]:4 local_24                                XREF[1]:     001013dd(W)  
+             undefined4        Stack[-0x28]:4 local_28                                XREF[1]:     001013d6(W)  
+             undefined4        Stack[-0x2c]:4 local_2c                                XREF[1]:     001013cf(W)  
+             undefined4        Stack[-0x30]:4 local_30                                XREF[1]:     001013c8(W)  
+             undefined4        Stack[-0x34]:4 local_34                                XREF[1]:     001013c1(W)  
+             undefined4        Stack[-0x38]:4 local_38                                XREF[1]:     001013ba(W)  
+             undefined4        Stack[-0x3c]:4 local_3c                                XREF[1]:     001013b3(W)  
+             undefined4        Stack[-0x40]:4 local_40                                XREF[1]:     001013ac(W)  
+             undefined4        Stack[-0x44]:4 local_44                                XREF[1]:     001013a5(W)  
+             undefined4        Stack[-0x48]:4 local_48                                XREF[1]:     0010139e(W)  
+             undefined4        Stack[-0x4c]:4 local_4c                                XREF[1]:     00101397(W)  
+             undefined4        Stack[-0x50]:4 local_50                                XREF[1]:     00101390(W)  
+             undefined4        Stack[-0x54]:4 local_54                                XREF[1]:     00101389(W)  
+             undefined4        Stack[-0x58]:4 local_58                                XREF[1]:     00101382(W)  
+             undefined4        Stack[-0x5c]:4 local_5c                                XREF[1]:     0010137b(W)  
+             undefined4        Stack[-0x60]:4 local_60                                XREF[1]:     00101374(W)  
+             undefined4        Stack[-0x64]:4 local_64                                XREF[1]:     0010136d(W)  
+             undefined4        Stack[-0x68]:4 local_68                                XREF[1]:     00101366(W)  
+             undefined4        Stack[-0x6c]:4 local_6c                                XREF[1]:     0010135f(W)  
+             undefined4        Stack[-0x70]:4 local_70                                XREF[1]:     00101358(W)  
+             undefined4        Stack[-0x74]:4 local_74                                XREF[1]:     00101351(W)  
+             undefined4        Stack[-0x78]:4 local_78                                XREF[1]:     0010134a(W)  
+             undefined4        Stack[-0x7c]:4 local_7c                                XREF[1]:     00101343(W)  
+             undefined4        Stack[-0x80]:4 local_80                                XREF[1]:     0010133c(W)  
+             undefined4        Stack[-0x84]:4 local_84                                XREF[1]:     00101335(W)  
+             undefined4        Stack[-0x88]:4 local_88                                XREF[1]:     0010132e(W)  
+             undefined4        Stack[-0x8c]:4 local_8c                                XREF[1]:     00101324(W)  
+             undefined4        Stack[-0x90]:4 local_90                                XREF[1]:     0010131a(W)  
+             undefined4        Stack[-0x94]:4 local_94                                XREF[1]:     00101310(W)  
+             undefined4        Stack[-0x98]:4 local_98                                XREF[1]:     00101306(W)  
+             undefined4        Stack[-0x9c]:4 local_9c                                XREF[1]:     001012fc(W)  
+             undefined4        Stack[-0xa0]:4 local_a0                                XREF[1]:     001012f2(W)  
+             undefined4        Stack[-0xa4]:4 local_a4                                XREF[1]:     001012e8(W)  
+             undefined4        Stack[-0xa8]:4 local_a8                                XREF[1]:     001012de(W)  
+             undefined4        Stack[-0xac]:4 local_ac                                XREF[1]:     001012d4(W)  
+             undefined4        Stack[-0xb0]:4 local_b0                                XREF[1]:     001012ca(W)  
+             undefined4        Stack[-0xb4]:4 local_b4                                XREF[1]:     001012c0(W)  
+             undefined4        Stack[-0xb8]:4 local_b8                                XREF[1]:     001012b6(W)  
+             undefined4        Stack[-0xbc]:4 local_bc                                XREF[1]:     001012ac(W)  
+             undefined4        Stack[-0xc0]:4 local_c0                                XREF[1]:     001012a2(W)  
+             undefined4        Stack[-0xc4]:4 local_c4                                XREF[1]:     00101298(W)  
+             undefined4        Stack[-0xc8]:4 local_c8                                XREF[1]:     0010128e(W)  
+             undefined4        Stack[-0xcc]:4 local_cc                                XREF[1]:     00101284(W)  
+             undefined4        Stack[-0xd0]:4 local_d0                                XREF[1]:     0010127a(W)  
+             undefined4        Stack[-0xd4]:4 local_d4                                XREF[1]:     00101270(W)  
+             undefined4        Stack[-0xd8]:4 local_d8                                XREF[1]:     00101266(W)  
+             undefined4        Stack[-0xdc]:4 local_dc                                XREF[1]:     0010125c(W)  
+             undefined4        Stack[-0xe0]:4 local_e0                                XREF[1]:     00101252(W)  
+             undefined4        Stack[-0xe4]:4 local_e4                                XREF[1]:     00101248(W)  
+             undefined4        Stack[-0xe8]:4 local_e8                                XREF[1]:     0010123e(W)  
+             undefined4        Stack[-0xec]:4 local_ec                                XREF[1]:     00101234(W)  
+             undefined4        Stack[-0xf0]:4 local_f0                                XREF[1]:     0010122a(W)  
+             undefined4        Stack[-0xf4]:4 local_f4                                XREF[1]:     00101220(W)  
+             undefined4        Stack[-0xf8]:4 local_f8                                XREF[1]:     00101216(W)  
+             undefined4        Stack[-0xfc]:4 local_fc                                XREF[1]:     0010120c(W)  
+             undefined4        Stack[-0x100   local_100                               XREF[1]:     00101202(W)  
+             undefined4        Stack[-0x104   local_104                               XREF[1]:     001011f8(W)  
+             undefined4        Stack[-0x108   local_108                               XREF[1]:     001011ee(W)  
+             undefined4        Stack[-0x10c   local_10c                               XREF[2]:     00101456(W), 
+                                                                                                   0010146b(R)  
+             undefined4        Stack[-0x110   local_110                               XREF[7]:     001013f2(W), 
+                                                                                                   00101401(R), 
+                                                                                                   0010141a(R), 
+                                                                                                   00101436(R), 
+                                                                                                   0010145c(R), 
+                                                                                                   0010147a(RW), 
+                                                                                                   00101481(R)  
+             undefined8        Stack[-0x120   local_120                               XREF[2]:     001011d8(W), 
+                                                                                                   0010140a(R)  
+                             check_flag                                      XREF[4]:     Entry Point(*), main:00101522(c), 
+                                                                                          00102060, 00102110(*)  
+        001011c9 f3 0f 1e fa     ENDBR64
+
+
+void frame_dummy(void)
+
+{
+  register_tm_clones();
+  return;
+}
+

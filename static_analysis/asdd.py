@@ -1,0 +1,34 @@
+# Los valores en local_108
+local_108 = [
+    0x80, 0xe4, 8, 0x18, 0x4a, 0x58, 0xb8, 0xe4, 0xac, 0x34, 0x58, 0xe4, 
+    0x7e, 0xbc, 0x9e, 0x8c, 0x7e, 0xd0, 0xc0, 0x7c, 0xac, 0xf4, 0x7e, 
+    0x28, 0x9e, 4, 0x7e, 0xbc, 0x9e, 0x8c, 0x7e, 0x5c, 0x14, 0x4c,
+    0x7e, 0x5c, 0x7e, 0x6c, 2, 0x14, 0xb8, 0x4c, 0x14, 0xa4, 0x9e, 
+    8, 0x7e, 0xe4, 0xf4, 8, 0x6a, 0x14, 0xa6, 0x5c, 0xb8, 0x7c, 0x9e, 
+    0x28, 0x3e, 0xac
+]
+
+# Función para generar la entrada de `param_1` que satisfaga la verificación
+def generar_param_1():
+    param_1 = []
+    
+    for i, valor in enumerate(local_108):
+        if i % 2 == 0:
+            iVar2 = -0x2e
+            uVar3 = 0xfffffe90
+        else:
+            iVar2 = 0x13c
+            uVar3 = 0x9e0
+
+        # Generar el valor que debe tener el byte en `param_1` y asegurarse de que esté en el rango 0-255
+        byte = ((valor ^ uVar3) // iVar2) & 0xFF
+        param_1.append(byte)
+
+    # Convertir la lista a bytes para representarlo como una cadena
+    return bytes(param_1)
+
+# Generar la entrada que satisface la verificación
+param_1_generado = generar_param_1()
+
+# Mostrar la entrada generada
+print(f"Entrada generada: {param_1_generado}")
