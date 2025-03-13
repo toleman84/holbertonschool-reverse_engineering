@@ -6,16 +6,26 @@ solver = Solver()
 # Define variables for each character in the core flag (24 characters)
 core_flag = [BitVec(f'char_{i}', 8) for i in range(24)]
 
-# Define allowed characters (A-Z, a-z, 0-9, and some special characters)
+# Define allowed characters (A-Z, a-z, 0-9, and special characters)
 allowed_chars = (
+    [ord(c) for c in "ABCDEFGHIJKLMNOPQRSTUVWXYZ"] +  # A-Z
     [ord(c) for c in "abcdefghijklmnopqrstuvwxyz"] +  # a-z
     [ord(c) for c in "0123456789"] +                 # 0-9
-    [ord(c) for c in "_-{}?"]                         # Special characters
+    [ord(c) for c in "_-{}?!@#"]                     # Special characters
 )
 
 # Add constraints for each character to be in the allowed set
 for char in core_flag:
     solver.add(Or([char == c for c in allowed_chars]))
+
+# Add constraints for specific parts of the flag (if known)
+# For example, if we suspect the flag contains "z3" and "angr":
+solver.add(core_flag[10] == ord('z'))  # 11th character is 'z'
+solver.add(core_flag[11] == ord('3'))  # 12th character is '3'
+solver.add(core_flag[15] == ord('a'))  # 16th character is 'a'
+solver.add(core_flag[16] == ord('n'))  # 17th character is 'n'
+solver.add(core_flag[17] == ord('g'))  # 18th character is 'g'
+solver.add(core_flag[18] == ord('r'))  # 19th character is 'r'
 
 # Initialize variables used in the constraints
 local_54 = BitVecVal(0, 32)
